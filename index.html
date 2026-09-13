@@ -3,15 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>happy bdayyyyy bestuuuuu</title>
+    <title>Document</title>
 </head>
 <body>
-    <!DOCTYPE html>
+    ```html
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy Birthday Bestie 💖</title>
+<title>Happy Birthday Babuuuu 💖</title>
 
 <style>
 * {
@@ -23,138 +24,205 @@
 body {
     height: 100vh;
     overflow: hidden;
+    font-family: "Trebuchet MS", sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: "Poppins", sans-serif;
-    background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fbc2eb);
+    background: #050014;
+    perspective: 1000px;
 }
 
-/* Background glow */
-body::before {
-    content: "";
+/* 3D Background */
+.background {
     position: absolute;
-    width: 500px;
-    height: 500px;
-    background: #ff4f9a;
-    filter: blur(150px);
-    opacity: 0.35;
-    animation: glow 5s infinite alternate;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 20% 20%, #ff2f92 0%, transparent 25%),
+        radial-gradient(circle at 80% 80%, #7b2cff 0%, transparent 30%),
+        radial-gradient(circle at 50% 50%, #16004a 0%, #020008 70%);
+}
+
+/* 3D glowing orbs */
+.orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(3px);
+    opacity: 0.7;
+    animation: float 8s ease-in-out infinite;
+    box-shadow:
+        inset -20px -20px 40px rgba(0,0,0,.5),
+        0 0 50px rgba(255,80,180,.7);
+}
+
+.orb1 {
+    width: 180px;
+    height: 180px;
+    background: radial-gradient(circle at 30% 30%, #fff, #ff3cac, #6a00ff);
+    top: 8%;
+    left: 8%;
+}
+
+.orb2 {
+    width: 240px;
+    height: 240px;
+    background: radial-gradient(circle at 30% 30%, #fff, #00d9ff, #5b00ff);
+    bottom: -60px;
+    right: 5%;
+    animation-delay: 2s;
+}
+
+.orb3 {
+    width: 110px;
+    height: 110px;
+    background: radial-gradient(circle at 30% 30%, #fff, #ffcc00, #ff0080);
+    top: 60%;
+    left: 5%;
+    animation-delay: 4s;
+}
+
+@keyframes float {
+    0%,100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-40px) rotate(20deg);
+    }
+}
+
+/* Stars */
+.star {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: white;
+    border-radius: 50%;
+    box-shadow: 0 0 12px white;
+    animation: twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle {
+    from { opacity: .2; transform: scale(.5); }
+    to { opacity: 1; transform: scale(1.5); }
+}
+
+/* Main Card */
+.card {
+    position: relative;
+    z-index: 10;
+    width: min(90%, 750px);
+    padding: 65px 35px;
+    text-align: center;
+
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 35px;
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    box-shadow:
+        0 25px 80px rgba(0,0,0,.6),
+        inset 0 0 30px rgba(255,255,255,.08);
+
+    transform-style: preserve-3d;
+    animation: cardFloat 5s ease-in-out infinite;
+}
+
+@keyframes cardFloat {
+    0%,100% {
+        transform: rotateX(2deg) rotateY(-2deg) translateY(0);
+    }
+    50% {
+        transform: rotateX(-2deg) rotateY(2deg) translateY(-12px);
+    }
+}
+
+/* Birthday heading */
+h1 {
+    font-size: clamp(38px, 7vw, 75px);
+    line-height: 1.1;
+    font-weight: 900;
+
+    background: linear-gradient(
+        90deg,
+        #ff4ecd,
+        #fff,
+        #6ee7ff,
+        #ff4ecd
+    );
+
+    background-size: 300%;
+    -webkit-background-clip: text;
+    color: transparent;
+
+    animation: rainbow 4s linear infinite, glow 2s ease-in-out infinite alternate;
+
+    transform: translateZ(60px);
+}
+
+@keyframes rainbow {
+    0% { background-position: 0%; }
+    100% { background-position: 300%; }
 }
 
 @keyframes glow {
     from {
-        transform: scale(0.8);
+        filter: drop-shadow(0 0 5px #ff36c7);
     }
     to {
-        transform: scale(1.3);
+        filter: drop-shadow(0 0 25px #ff36c7);
     }
 }
 
-/* Main card */
-.card {
-    position: relative;
-    width: 360px;
-    height: 500px;
-    perspective: 1200px;
-    cursor: pointer;
-}
-
-/* Card front */
-.card-front {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    border-radius: 25px;
-    background: linear-gradient(145deg, #ff4f81, #ff85a2);
-    box-shadow: 0 20px 50px rgba(255, 0, 100, 0.4);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+/* Subtitle */
+.subtitle {
+    margin-top: 25px;
     color: white;
-    transition: 1s;
-    z-index: 2;
-    backface-visibility: hidden;
+    font-size: clamp(18px, 3vw, 28px);
+    letter-spacing: 3px;
+    animation: fadeIn 2s ease forwards;
+    text-shadow: 0 0 15px #ff8bdc;
 }
 
-.card-front h1 {
-    font-size: 38px;
-    text-shadow: 0 0 15px white;
-    animation: heartbeat 1.5s infinite;
-}
-
-.card-front p {
-    margin-top: 15px;
-    font-size: 18px;
-}
-
-.gift {
-    font-size: 80px;
-    margin-bottom: 20px;
-    animation: bounce 2s infinite;
+/* Heart */
+.big-heart {
+    font-size: 75px;
+    margin: 20px;
+    display: inline-block;
+    animation: heartbeat 1.2s infinite;
+    filter: drop-shadow(0 0 20px #ff1493);
 }
 
 @keyframes heartbeat {
-    0%, 100% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.08);
-    }
+    0%,100% { transform: scale(1); }
+    25% { transform: scale(1.2); }
+    40% { transform: scale(1); }
+    60% { transform: scale(1.15); }
 }
 
-@keyframes bounce {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-15px);
-    }
+/* Button */
+button {
+    margin-top: 25px;
+    padding: 15px 35px;
+    border: none;
+    border-radius: 50px;
+
+    background: linear-gradient(45deg, #ff1493, #8a2be2);
+    color: white;
+
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+
+    box-shadow: 0 0 25px rgba(255,20,147,.6);
+    transition: .3s;
 }
 
-/* Inside card */
-.card-inside {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    border-radius: 25px;
-    background: rgba(255,255,255,0.95);
-    padding: 35px 25px;
-    text-align: center;
-    box-shadow: 0 20px 50px rgba(255, 0, 100, 0.3);
-    transform: rotateY(180deg);
-    transition: 1s;
-    backface-visibility: hidden;
-    z-index: 1;
-}
-
-.card.open .card-front {
-    transform: rotateY(180deg);
-}
-
-.card.open .card-inside {
-    transform: rotateY(360deg);
-}
-
-.card-inside h2 {
-    color: #ff4081;
-    font-size: 30px;
-    margin-bottom: 20px;
-    animation: heartbeat 1.5s infinite;
-}
-
-.card-inside p {
-    color: #555;
-    font-size: 17px;
-    line-height: 1.7;
-    margin: 10px 0;
-}
-
-.love {
-    font-size: 25px;
-    color: #ff4081;
-    margin-top: 20px;
+button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 45px rgba(255,20,147,1);
 }
 
 /* Floating hearts */
@@ -162,175 +230,145 @@ body::before {
     position: absolute;
     bottom: -50px;
     font-size: 25px;
-    animation: floatUp 6s linear infinite;
-    opacity: 0.8;
+    animation: rise linear infinite;
+    opacity: .8;
+    z-index: 5;
 }
 
-@keyframes floatUp {
+@keyframes rise {
     0% {
-        transform: translateY(0) scale(1);
+        transform: translateY(0) rotate(0deg);
         opacity: 0;
     }
-
     20% {
         opacity: 1;
     }
-
     100% {
-        transform: translateY(-110vh) scale(1.5);
+        transform: translateY(-110vh) rotate(360deg);
         opacity: 0;
     }
 }
 
-.heart:nth-child(1) {
-    left: 10%;
-    animation-delay: 0s;
-}
-
-.heart:nth-child(2) {
-    left: 25%;
-    animation-delay: 2s;
-}
-
-.heart:nth-child(3) {
-    left: 45%;
-    animation-delay: 4s;
-}
-
-.heart:nth-child(4) {
-    left: 65%;
-    animation-delay: 1s;
-}
-
-.heart:nth-child(5) {
-    left: 85%;
-    animation-delay: 3s;
-}
-
-/* Sparkles */
-.sparkle {
+/* Confetti */
+.confetti {
     position: absolute;
-    color: white;
-    font-size: 20px;
-    animation: sparkle 2s infinite;
+    width: 8px;
+    height: 14px;
+    top: -20px;
+    animation: fall linear infinite;
+    z-index: 20;
 }
 
-@keyframes sparkle {
-    0%, 100% {
-        opacity: 0;
-        transform: scale(0);
-    }
-    50% {
-        opacity: 1;
-        transform: scale(1.5);
+@keyframes fall {
+    to {
+        transform: translateY(110vh) rotate(720deg);
     }
 }
 
-.sparkle:nth-child(6) {
-    top: 10%;
-    left: 15%;
-}
-
-.sparkle:nth-child(7) {
-    top: 20%;
-    right: 15%;
-    animation-delay: .5s;
-}
-
-.sparkle:nth-child(8) {
-    bottom: 15%;
-    left: 20%;
-    animation-delay: 1s;
-}
-
-.sparkle:nth-child(9) {
-    bottom: 20%;
-    right: 20%;
-    animation-delay: 1.5s;
-}
-
-.hint {
-    position: absolute;
-    bottom: -45px;
-    color: white;
-    font-size: 14px;
-    width: 100%;
-    text-align: center;
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 </style>
 </head>
 
 <body>
 
-<!-- Floating hearts -->
-<div class="heart">💗</div>
-<div class="heart">💕</div>
-<div class="heart">💖</div>
-<div class="heart">💓</div>
-<div class="heart">💞</div>
+<div class="background">
 
-<!-- Sparkles -->
-<div class="sparkle">✨</div>
-<div class="sparkle">✨</div>
-<div class="sparkle">⭐</div>
-<div class="sparkle">✨</div>
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+    <div class="orb orb3"></div>
 
-<!-- Birthday Card -->
-<div class="card" onclick="this.classList.toggle('open')">
-
-    <!-- Front -->
-    <div class="card-front">
-        <div class="gift">🎁</div>
-
-        <h1>Happy Birthday!</h1>
-
-        <p>💖 For My Bestiee 💖</p>
-
-        <div style="margin-top:30px;">
-            💌 Click Me 💌
-        </div>
-    </div>
-
-    <!-- Inside -->
-    <div class="card-inside">
-
-        <h2>🎂 Happy Bday My Bestiee! 🎉</h2>
-
-        <p>
-            You are everything to me. 💖
-        </p>
-
-        <p>
-            Thank you for making every moment
-            more beautiful and special. 🥹💕
-        </p>
-
-        <p>
-            I hope your birthday is filled with
-            happiness, laughter and lots of love! ✨
-        </p>
-
-        <p>
-            Keep smiling and always stay amazing! 🌸
-        </p>
-
-        <div class="love">
-            💕 Love You Bestiee 💕
-        </div>
-
-        <div style="font-size:50px; margin-top:20px;">
-            🎂🎈🎁
-        </div>
-
-    </div>
-
-    <div class="hint">
-        Click the card to open/close 💌
-    </div>
+    <!-- Stars -->
+    <div class="star" style="top:10%;left:40%;"></div>
+    <div class="star" style="top:25%;left:75%;animation-delay:.5s;"></div>
+    <div class="star" style="top:70%;left:85%;animation-delay:1s;"></div>
+    <div class="star" style="top:80%;left:25%;animation-delay:1.5s;"></div>
+    <div class="star" style="top:40%;left:15%;animation-delay:.8s;"></div>
 
 </div>
 
+<!-- Birthday Card -->
+<div class="card">
+
+    <div class="big-heart">💖</div>
+
+    <h1>
+        Happppiiieeeeeeee<br>
+        Bdayyyyyyyyyyyyyy<br>
+        Babbbbbbbuuuuuuuuuuuu 💕
+    </h1>
+
+    <p class="subtitle">
+        ✨ May your day be as amazing as YOU are ✨
+    </p>
+
+    <button onclick="celebrate()">
+        🎁 Click for Surprise 🎁
+    </button>
+
+</div>
+
+<script>
+
+/* Floating Hearts */
+const hearts = ["💖","💕","💗","💓","💞","❤️","✨"];
+
+for(let i = 0; i < 35; i++) {
+
+    let heart = document.createElement("div");
+
+    heart.className = "heart";
+    heart.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
+
+    heart.style.left = Math.random() * 100 + "%";
+    heart.style.animationDuration = (5 + Math.random() * 7) + "s";
+    heart.style.animationDelay = Math.random() * 8 + "s";
+    heart.style.fontSize = (15 + Math.random() * 30) + "px";
+
+    document.body.appendChild(heart);
+}
+
+
+/* Confetti */
+function createConfetti() {
+
+    for(let i = 0; i < 100; i++) {
+
+        let c = document.createElement("div");
+
+        c.className = "confetti";
+
+        c.style.left = Math.random() * 100 + "%";
+        c.style.animationDuration = (2 + Math.random() * 4) + "s";
+        c.style.animationDelay = Math.random() * 2 + "s";
+
+        c.style.background =
+            ["#ff1493","#00ffff","#ffff00","#8a2be2","#ffffff"]
+            [Math.floor(Math.random()*5)];
+
+        document.body.appendChild(c);
+
+        setTimeout(() => c.remove(), 7000);
+    }
+}
+
+
+/* Surprise */
+function celebrate() {
+
+    createConfetti();
+
+    alert("🎉💖 HAPPY BIRTHDAY BABUUUUUUUUUU!!! 💖🎉");
+
+}
+
+</script>
+
 </body>
 </html>
+```
+
 </body>
 </html>
